@@ -18,10 +18,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 
 // Health check
-app.get('/', (req, res) => {
-  res.json({ message: 'Personal Notes API is running' });
-});
-
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });

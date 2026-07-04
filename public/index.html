@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Notes</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="auth-section">
+    <div class="auth-card">
+      <h1>📝 Personal Notes</h1>
+      <div class="tab-bar">
+        <button class="tab active" onclick="showTab('login')">Login</button>
+        <button class="tab" onclick="showTab('register')">Register</button>
+      </div>
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Password" required minlength="6">
+        <button type="submit">Login</button>
+      </form>
+      <form id="register-form" class="hidden" onsubmit="handleRegister(event)">
+        <input type="email" id="reg-email" placeholder="Email" required>
+        <input type="password" id="reg-password" placeholder="Password (min 6 chars)" required minlength="6">
+        <button type="submit">Register</button>
+      </form>
+      <p id="auth-error" class="error"></p>
+    </div>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <header>
+      <h1>📝 My Notes</h1>
+      <div class="header-actions">
+        <input type="text" id="search-input" placeholder="Search by title..." oninput="loadNotes()">
+        <select id="filter-archive" onchange="loadNotes()">
+          <option value="false">Active</option>
+          <option value="true">Archived</option>
+        </select>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <div class="create-note">
+      <form onsubmit="handleCreate(event)">
+        <input type="text" id="note-title" placeholder="Title" required>
+        <textarea id="note-content" placeholder="Content" required rows="3"></textarea>
+        <input type="text" id="note-tags" placeholder="Tags (comma separated)">
+        <button type="submit">Add Note</button>
+      </form>
+    </div>
+
+    <div id="notes-list"></div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

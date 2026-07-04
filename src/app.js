@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
   res.json({ message: 'Personal Notes API is running' });
 });
 
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // Error handling middleware
 app.use(errorHandler);
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authenticate = require('../middleware/auth');
+const { noteValidation } = require('../utils/validators');
 const {
   createNote,
   getAllNotes,
@@ -16,7 +17,7 @@ const {
 router.use(authenticate);
 
 // CRUD routes
-router.post('/', createNote);
+router.post('/', noteValidation, createNote);
 router.get('/', getAllNotes);
 router.get('/:id', getNoteById);
 router.put('/:id', updateNote);

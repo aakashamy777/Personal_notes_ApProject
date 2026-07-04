@@ -1,16 +1,37 @@
-// Validation rules using express-validator — logic will be added in Stage 2
 const { body } = require('express-validator');
 
 const registerValidation = [
-  // TODO: Add validation rules for registration
+  body('email')
+    .isEmail()
+    .withMessage('Please provide a valid email')
+    .normalizeEmail(),
+  body('password')
+    .isLength({ min: 6 })
+    .withMessage('Password must be at least 6 characters long'),
 ];
 
 const loginValidation = [
-  // TODO: Add validation rules for login
+  body('email')
+    .isEmail()
+    .withMessage('Please provide a valid email')
+    .normalizeEmail(),
+  body('password')
+    .notEmpty()
+    .withMessage('Password is required'),
 ];
 
 const noteValidation = [
-  // TODO: Add validation rules for note creation
+  body('title')
+    .notEmpty()
+    .withMessage('Title is required')
+    .trim(),
+  body('content')
+    .notEmpty()
+    .withMessage('Content is required'),
+  body('tags')
+    .optional()
+    .isArray()
+    .withMessage('Tags must be an array'),
 ];
 
 module.exports = { registerValidation, loginValidation, noteValidation };
